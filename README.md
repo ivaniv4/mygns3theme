@@ -12,8 +12,8 @@ The 8 color themes of the GNS3 3.x Web UI, brought to the native desktop client.
 [![CI](https://img.shields.io/github/actions/workflow/status/ivaniv4/mygns3theme/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/ivaniv4/mygns3theme/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-7D00FA?style=flat-square)](LICENSE)
 [![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20Linux%20%7C%20macOS-7D00FA?style=flat-square)](#installation)
-[![GNS3](https://img.shields.io/badge/GNS3-2.2%20%7C%203.x-7D00FA?style=flat-square)](https://www.gns3.com/)
-[![Python](https://img.shields.io/badge/python-3.10%2B-7D00FA?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![GNS3](https://img.shields.io/badge/GNS3-2.0%20to%203.1-7D00FA?style=flat-square)](https://www.gns3.com/)
+[![Python](https://img.shields.io/badge/python-3.8%2B-7D00FA?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 
 <img src="docs/themes/deeppurple-amber.svg" alt="Deep Purple & Amber theme preview" width="480">
 
@@ -48,6 +48,7 @@ The 8 color themes of the GNS3 3.x Web UI, brought to the native desktop client.
 
 - **8 Material 3 themes**: the exact palettes of the GNS3 3.x Web UI, 4 light and 4 dark.
 - **Cross-platform**: Windows, Linux (pip, pipx or distribution packages) and macOS (`GNS3.app`).
+- **Old and new GNS3**: from 2.0 to 3.1, on both PyQt5 and PyQt6 builds (see [Compatibility](#compatibility)).
 - **One script per platform**: it finds GNS3, gets the right Python, closes GNS3, patches it, lets you pick a theme and restarts GNS3.
 - **Switch themes from GNS3 itself**: every theme is listed in *Preferences > Interface style*.
 - **Modern widgets**: pill buttons, underlined tabs, rounded inputs and menus, toolbar icons tinted to match the theme.
@@ -82,13 +83,25 @@ The palettes are extracted from the GNS3 Web UI (`theme-*` classes), so the desk
 
 | | Windows | Linux | macOS |
 | --- | --- | --- | --- |
-| **GNS3** | 2.2 or 3.x installer | pip, pipx or distribution package | `GNS3.app` |
-| **Python** | Same version as GNS3 (3.13 for GNS3 3.1), installed for you with `winget` | Any Python 3.10+ | Same version as GNS3, installed for you with Homebrew |
+| **GNS3** | 2.0 to 3.1 installer | pip, pipx or distribution package | `GNS3.app` |
+| **Python** | Same version as GNS3 (3.13 for GNS3 3.1), installed for you with `winget` | Any Python 3.8+ | Same version as GNS3, installed for you with Homebrew |
 | **Internet** | Needed once to fetch the official GNS3 sources | Not needed | Needed once to fetch the official GNS3 sources |
 | **Rights** | Administrator (UAC prompt) | `sudo` only for system-wide installs | Administrator only if the app is not writable |
 
 > [!NOTE]
 > Frozen builds (Windows installer, `GNS3.app`) contain compiled Python bytecode, which can only be rebuilt by the same Python version. The installers detect that version and take care of it.
+
+## Compatibility
+
+| GNS3 | Qt | Status |
+| --- | --- | --- |
+| 3.1 (alpha) | PyQt6 | Tested on a real install (Windows) |
+| 3.0.6, 2.2.56 to 2.2.61 | PyQt6 | Patched sources compile, style code run headless |
+| 3.0.0 to 3.0.5, 2.2.0 to 2.2.55, 2.1, 2.0 | PyQt5 | Patched sources compile, style code run headless |
+
+Every version listed is checked by CI: the patches are applied to the official sources, and the style code is run against a real PyQt5 or PyQt6 for every theme (`tests/qt_styles.py`). Only 3.1 has also been checked visually on a real GNS3 window, so please report display problems on other versions.
+
+On versions that do not expose the topology grid colors, the grid keeps GNS3's default color.
 
 ## Installation
 
@@ -284,6 +297,8 @@ mygns3theme/
 │   ├── build_release.py      # builds the Windows and Linux/macOS archives
 │   ├── make_previews.py      # generates docs/themes/*.svg
 │   └── make_logo.py          # generates docs/social-preview.png
+├── tests/
+│   └── qt_styles.py          # runs the patched style code on PyQt5 / PyQt6
 ├── docs/
 │   ├── assets/gns3-mark.svg  # GNS3 mark used as logo
 │   ├── themes/               # theme previews
@@ -296,7 +311,7 @@ mygns3theme/
 <details>
 <summary><b>"this GNS3 build needs Python 3.x to be patched"</b></summary>
 
-Frozen builds can only be patched by the Python version they were built with. The installers install it for you. When running `mygns3theme.py` by hand, use that version (`py -3.13` on Windows, `python3.13` on macOS).
+Frozen builds can only be patched by the Python version they were built with (3.7 to 3.13). The installers install it for you. When running `mygns3theme.py` by hand, use that version (`py -3.13` on Windows, `python3.13` on macOS).
 
 </details>
 

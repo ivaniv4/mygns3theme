@@ -8,7 +8,14 @@ Thanks for your interest in improving mygns3theme!
 2. Run the self-test (no GNS3 needed):
 
    ```sh
-   python mygns3theme.py selftest --gns3-version 3.1.0a7 --gns3-version 2.2.61
+   python mygns3theme.py selftest
+   ```
+
+   With PyQt installed (`pip install PyQt5` or `PyQt6`), also run the patched style code of every supported GNS3 version:
+
+   ```sh
+   python tests/qt_styles.py 5
+   python tests/qt_styles.py 6
    ```
 
 3. Test on a real GNS3 install with the installer of your platform (`windows/install.cmd` or `unix/install.sh`), check the main window, *Preferences* and a project dialog, then run the matching uninstaller to make sure GNS3 is restored cleanly.
@@ -21,7 +28,7 @@ Thanks for your interest in improving mygns3theme!
 
 ## Guidelines
 
-- Keep the tool dependency-free (standard library only) and compatible with Python 3.10.
+- Keep the tool dependency-free (standard library only) and compatible with Python 3.8.
 - Never weaken the safety checks: the bytecode verification and the backups must stay.
 - Style changes go in [`template/style.qss`](template/style.qss); use `@token@` placeholders instead of hard-coded colors.
 - Keep `unix/*.sh` compatible with the bash 3.2 shipped with macOS, and ShellCheck-clean.

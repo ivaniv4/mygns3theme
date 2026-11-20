@@ -24,7 +24,7 @@ TOOL="$ROOT/mygns3theme.py"
 step() { printf '\033[1;35m==>\033[0m %s\n' "$1"; }
 die() { printf '\033[31mERROR:\033[0m %s\n' "$1" >&2; exit 1; }
 
-# restoring files works with any Python 3.10+
+# restoring files works with any Python 3.8+
 PY="$(command -v python3 || true)"
 [ -n "$PY" ] || die "python3 is required"
 

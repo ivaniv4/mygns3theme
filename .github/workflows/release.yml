@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: "3.13"
       - name: Self-test
-        run: python mygns3theme.py selftest --gns3-version 3.1.0a7 --gns3-version 2.2.61
+        run: python mygns3theme.py selftest
       - name: Build archives
         run: python scripts/build_release.py "${GITHUB_REF_NAME}"
       - name: Publish the GitHub release

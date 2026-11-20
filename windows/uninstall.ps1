@@ -35,7 +35,7 @@ function Invoke-ToolElevated([string[]]$arguments) {
     if ($process.ExitCode -ne 0) { throw "mygns3theme $($arguments -join ' ') failed (exit $($process.ExitCode))" }
 }
 
-# restoring files works with any Python 3.10+
+# restoring files works with any Python 3.8+
 $python = $null
 foreach ($candidate in @("-3.13", "-3")) {
     try {

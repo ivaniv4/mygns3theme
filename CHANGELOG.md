@@ -3,6 +3,17 @@
 All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.1.0] - 2026-11-20
+
+### Added
+- Support for older GNS3 versions, from 2.0 to 3.0.5 (PyQt5 builds), next to the PyQt6 ones.
+- Python 3.7 and 3.8 builds are recognized, and the tool itself runs on Python 3.8+.
+- `tests/qt_styles.py`: runs the patched style code of 9 GNS3 versions on a real PyQt5 and PyQt6, for every theme.
+- The self-test now covers 8 GNS3 versions, and CI runs it on Python 3.8 too.
+
+### Fixed
+- The patched style code no longer assumes `QtWidgets`, grid colors or the console exist (they are missing in old versions).
+
 ## [2.0.0] - 2026-11-20
 
 ### Added
@@ -35,4 +46,5 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - Automatic backup and restore of `library.zip`.
 - Toolbar icon tinting.
 
+[2.1.0]: https://github.com/ivaniv4/mygns3theme/releases/tag/v2.1.0
 [2.0.0]: https://github.com/ivaniv4/mygns3theme/releases/tag/v2.0.0

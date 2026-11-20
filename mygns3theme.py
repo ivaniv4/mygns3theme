@@ -17,7 +17,7 @@ The original files are always backed up. Themes themselves are data: the style
 sheet and palette of every theme are rendered into the GNS3 settings folder, so
 changing or adding a theme never needs a new patch.
 
-Compatible with Python 3.10+. Patching a frozen build needs the same Python
+Compatible with Python 3.8+. Patching a frozen build needs the same Python
 minor version as GNS3 ("detect" tells which one).
 """
 
@@ -33,10 +33,14 @@ import subprocess
 import sys
 import tempfile
 import urllib.request
+import warnings
 import zipfile
 from pathlib import Path
 
-__version__ = "2.0.0"
+__version__ = "2.1.0"
+
+# compiling GNS3's own sources reports invalid escape sequences that are not ours to fix
+warnings.filterwarnings("ignore", category=SyntaxWarning)
 
 IS_WINDOWS = sys.platform.startswith("win")
 IS_MACOS = sys.platform == "darwin"
@@ -45,7 +49,10 @@ MODULES = ("settings", "main_window", "style")
 # names only present in a patched style module (setVioletStyle: mygns3theme 1.x)
 MARKERS = ("setCustomTheme", "setVioletStyle")
 SOURCE_URL = "https://raw.githubusercontent.com/GNS3/gns3-gui/v{version}/gns3/{module}.py"
-MAGIC_TO_PYTHON = {3413: "3.8", 3425: "3.9", 3439: "3.10", 3495: "3.11", 3531: "3.12", 3571: "3.13"}
+MAGIC_TO_PYTHON = {3394: "3.7", 3413: "3.8", 3425: "3.9", 3439: "3.10", 3495: "3.11", 3531: "3.12", 3571: "3.13"}
+
+# GNS3 versions the self-test patches by default (older ones use PyQt5, newer ones PyQt6)
+SELFTEST_VERSIONS = ["2.0.0", "2.1.21", "2.2.30", "2.2.50", "2.2.61", "3.0.0", "3.0.6", "3.1.0a7"]
 
 REPO_DIR = Path(__file__).resolve().parent
 PATCH_DIR = REPO_DIR / "patches"
@@ -637,7 +644,7 @@ def cmd_status(args):
         print(f"GNS3        : {target.version()} ({target.kind} install)")
         print(f"location    : {target.path}")
         print(f"state       : {'patched' if target.is_patched() else 'original'}")
-        print(f"python      : {target.python_version() or 'any Python 3.10+'}")
+        print(f"python      : {target.python_version() or 'any Python 3.8+'}")
     else:
         print("GNS3        : not found")
     installed = (THEME_HOME / "themes.json").exists()
@@ -657,7 +664,7 @@ def cmd_selftest(args):
                 if isinstance(value, str) and value.startswith("#") and not re.fullmatch(r"#[0-9A-Fa-f]{6}", value):
                     fail(f"{theme_id}: invalid color {key}={value}")
         info(f"{len(index)} themes render correctly")
-    for version in args.gns3_version or ["3.1.0a7"]:
+    for version in args.gns3_version or SELFTEST_VERSIONS:
         for module in MODULES:
             compile(PATCHERS[module](fetch_source(version, module)), f"gns3/{module}.py", "exec")
         info(f"patches apply and compile on gns3-gui v{version}")

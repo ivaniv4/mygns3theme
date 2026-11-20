@@ -54,7 +54,7 @@ function Get-LibraryZip {
 
 function Get-Gns3PythonVersion($libraryZip) {
     # the .pyc magic number tells which Python built GNS3
-    $magics = @{ 3413 = "3.8"; 3425 = "3.9"; 3439 = "3.10"; 3495 = "3.11"; 3531 = "3.12"; 3571 = "3.13" }
+    $magics = @{ 3394 = "3.7"; 3413 = "3.8"; 3425 = "3.9"; 3439 = "3.10"; 3495 = "3.11"; 3531 = "3.12"; 3571 = "3.13" }
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     $zip = [IO.Compression.ZipFile]::OpenRead($libraryZip)
     try {
