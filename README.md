@@ -1,10 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/gns3-mark.svg" alt="mygns3theme logo" width="120">
-
-# mygns3theme
-
-**Material 3 themes for the GNS3 desktop GUI on Windows, Linux and macOS.**
+<h1><img src="docs/social-preview.png" alt="mygns3theme: Material 3 themes for the GNS3 desktop GUI" width="900"></h1>
 
 The 8 color themes of the GNS3 3.x Web UI, brought to the native desktop client.
 
