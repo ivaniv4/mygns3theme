@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/assets/gns3-mark.svg" alt="mygns3theme logo" width="120">
+
 # mygns3theme
 
 **Material 3 themes for the GNS3 desktop GUI on Windows, Linux and macOS.**
@@ -280,8 +282,12 @@ mygns3theme/
 ├── themes/                   # one JSON file per theme (Material 3 roles)
 ├── scripts/
 │   ├── build_release.py      # builds the Windows and Linux/macOS archives
-│   └── make_previews.py      # generates docs/themes/*.svg
-├── docs/themes/              # theme previews
+│   ├── make_previews.py      # generates docs/themes/*.svg
+│   └── make_logo.py          # generates docs/social-preview.png
+├── docs/
+│   ├── assets/gns3-mark.svg  # GNS3 mark used as logo
+│   ├── themes/               # theme previews
+│   └── social-preview.*      # repository banner (1280x640)
 └── .github/                  # CI, release workflow, issue and PR templates
 ```
 
@@ -331,6 +337,8 @@ Contributions are welcome, especially new themes and testing on Linux distributi
 - [gns3theme](https://github.com/n3oxmind/gns3theme) by n3oxmind (MIT), the original idea of theming the GNS3 GUI by patching it.
 - [GNS3](https://github.com/GNS3), the GUI being themed and the source of the Web UI palettes. GNS3 sources are downloaded at install time and are **not** redistributed here.
 - [Material Design 3](https://m3.material.io/) for the design language and color roles.
+
+The GNS3 name and logo are trademarks of GNS3 Technologies Inc. and are used here only to identify the software being themed.
 
 ## License
 
