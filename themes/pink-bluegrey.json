@@ -1,0 +1,28 @@
+{
+    "name": "Pink & Bluegrey",
+    "mode": "dark",
+    "source": "GNS3 Web UI theme-pink-bluegrey",
+    "colors": {
+        "primary": "#FFB1C5",
+        "on_primary": "#65002F",
+        "primary_container": "#8F0045",
+        "on_primary_container": "#FFD9E1",
+        "secondary": "#E3BDC5",
+        "secondary_container": "#5B3F46",
+        "on_secondary_container": "#FFD9E1",
+        "tertiary": "#BEC2FF",
+        "surface": "#171213",
+        "surface_container_lowest": "#120D0E",
+        "surface_container_low": "#201A1B",
+        "surface_container": "#241E1F",
+        "surface_container_high": "#2F2829",
+        "surface_container_highest": "#3A3334",
+        "on_surface": "#ECE0E1",
+        "on_surface_variant": "#F3DDE1",
+        "outline": "#9E8C90",
+        "outline_variant": "#514346",
+        "inverse_surface": "#ECE0E1",
+        "inverse_on_surface": "#352F30",
+        "error": "#FFB4AB"
+    }
+}

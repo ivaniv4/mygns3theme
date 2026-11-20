@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+"""
+Generates docs/themes/<id>.svg: a small mock-up of the GNS3 window drawn with
+each theme's colors, used by the README gallery.
+
+Usage: python scripts/make_previews.py
+"""
+
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+import mygns3theme  # noqa: E402
+
+OUT = ROOT / "docs" / "themes"
+
+CARD = """<svg xmlns="http://www.w3.org/2000/svg" width="320" height="200" viewBox="0 0 320 200" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <rect x="0.5" y="0.5" width="319" height="199" rx="14" fill="{surface}" stroke="{outline_variant}"/>
+  <!-- menu bar and toolbar -->
+  <path d="M1 15 a14 14 0 0 1 14 -14 h290 a14 14 0 0 1 14 14 v13 h-318 z" fill="{surface_container_lowest}"/>
+  <text x="14" y="20" font-size="9" fill="{on_surface}">File   Edit   View   Control   Node</text>
+  <rect x="1" y="28" width="318" height="1" fill="{surface_container_high}"/>
+  <circle cx="20" cy="42" r="7" fill="{primary}"/>
+  <circle cx="40" cy="42" r="7" fill="{primary}" opacity="0.75"/>
+  <path d="M55 36 l10 6 -10 6 z" fill="{primary}"/>
+  <rect x="72" y="36" width="12" height="12" rx="2" fill="{primary}" opacity="0.6"/>
+  <!-- device toolbar -->
+  <rect x="1" y="56" width="34" height="114" fill="{surface}"/>
+  <circle cx="18" cy="72" r="9" fill="{primary}"/>
+  <circle cx="18" cy="98" r="9" fill="{primary}"/>
+  <rect x="9" y="116" width="18" height="13" rx="2" fill="{primary}"/>
+  <!-- canvas with a small topology -->
+  <rect x="38" y="56" width="190" height="114" rx="8" fill="{canvas}" stroke="{surface_container_highest}"/>
+  <line x1="80" y1="95" x2="135" y2="125" stroke="{on_surface_variant}" stroke-width="1.5"/>
+  <line x1="135" y1="125" x2="190" y2="92" stroke="{on_surface_variant}" stroke-width="1.5"/>
+  <circle cx="80" cy="95" r="11" fill="{primary_container}" stroke="{primary}" stroke-width="2"/>
+  <circle cx="135" cy="125" r="11" fill="{primary_container}" stroke="{primary}" stroke-width="2"/>
+  <circle cx="190" cy="92" r="11" fill="{primary_container}" stroke="{primary}" stroke-width="2"/>
+  <!-- side panel -->
+  <rect x="234" y="56" width="78" height="114" rx="8" fill="{surface_container_lowest}" stroke="{surface_container_highest}"/>
+  <path d="M234 64 a8 8 0 0 1 8 -8 h62 a8 8 0 0 1 8 8 v8 h-78 z" fill="{surface_container}"/>
+  <text x="241" y="68" font-size="8" font-weight="600" fill="{on_surface}">Topology</text>
+  <rect x="240" y="80" width="66" height="13" rx="4" fill="{secondary_container}"/>
+  <rect x="245" y="85" width="40" height="3" rx="1.5" fill="{on_secondary_container}"/>
+  <rect x="245" y="102" width="50" height="3" rx="1.5" fill="{on_surface_variant}" opacity="0.6"/>
+  <rect x="245" y="114" width="36" height="3" rx="1.5" fill="{on_surface_variant}" opacity="0.6"/>
+  <rect x="240" y="130" width="66" height="8" rx="4" fill="{secondary_container}"/>
+  <rect x="240" y="130" width="40" height="8" rx="4" fill="{tertiary}"/>
+  <!-- status bar with buttons -->
+  <path d="M1 176 h318 v10 a14 14 0 0 1 -14 13 h-290 a14 14 0 0 1 -14 -13 z" fill="{surface_container}"/>
+  <rect x="196" y="176" width="54" height="18" rx="9" fill="{secondary_container}"/>
+  <text x="223" y="188.5" font-size="8" text-anchor="middle" fill="{on_secondary_container}">Cancel</text>
+  <rect x="256" y="176" width="54" height="18" rx="9" fill="{primary}"/>
+  <text x="283" y="188.5" font-size="8" text-anchor="middle" font-weight="600" fill="{on_primary}">OK</text>
+  <text x="14" y="189" font-size="9" font-weight="600" fill="{on_surface}">{name}</text>
+</svg>
+"""
+
+
+def main():
+    OUT.mkdir(parents=True, exist_ok=True)
+    for theme_id, data in mygns3theme.load_themes():
+        values = mygns3theme.theme_values(data, "")
+        values["name"] = data["name"].replace("&", "&amp;")
+        (OUT / f"{theme_id}.svg").write_text(CARD.format(**values), encoding="utf-8", newline="\n")
+        print(f"docs/themes/{theme_id}.svg")
+
+
+if __name__ == "__main__":
+    main()

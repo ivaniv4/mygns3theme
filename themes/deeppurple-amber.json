@@ -1,0 +1,28 @@
+{
+    "name": "Deep Purple & Amber",
+    "mode": "light",
+    "source": "GNS3 Web UI theme-deeppurple-amber",
+    "colors": {
+        "primary": "#7D00FA",
+        "on_primary": "#FFFFFF",
+        "primary_container": "#ECDCFF",
+        "on_primary_container": "#5F00C0",
+        "secondary": "#645B70",
+        "secondary_container": "#EADEF7",
+        "on_secondary_container": "#4B4357",
+        "tertiary": "#626200",
+        "surface": "#FEF8FC",
+        "surface_container_lowest": "#FFFFFF",
+        "surface_container_low": "#F8F2F6",
+        "surface_container": "#F2ECF1",
+        "surface_container_high": "#EDE6EB",
+        "surface_container_highest": "#E6E1E6",
+        "on_surface": "#1D1B1E",
+        "on_surface_variant": "#49454E",
+        "outline": "#7B757F",
+        "outline_variant": "#CBC4CF",
+        "inverse_surface": "#323033",
+        "inverse_on_surface": "#F5EFF4",
+        "error": "#BA1A1A"
+    }
+}

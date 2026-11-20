@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="200" viewBox="0 0 320 200" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <rect x="0.5" y="0.5" width="319" height="199" rx="14" fill="#151316" stroke="#49454E"/>
+  <!-- menu bar and toolbar -->
+  <path d="M1 15 a14 14 0 0 1 14 -14 h290 a14 14 0 0 1 14 14 v13 h-318 z" fill="#0F0D11"/>
+  <text x="14" y="20" font-size="9" fill="#E6E1E6">File   Edit   View   Control   Node</text>
+  <rect x="1" y="28" width="318" height="1" fill="#2B292D"/>
+  <circle cx="20" cy="42" r="7" fill="#D5BAFF"/>
+  <circle cx="40" cy="42" r="7" fill="#D5BAFF" opacity="0.75"/>
+  <path d="M55 36 l10 6 -10 6 z" fill="#D5BAFF"/>
+  <rect x="72" y="36" width="12" height="12" rx="2" fill="#D5BAFF" opacity="0.6"/>
+  <!-- device toolbar -->
+  <rect x="1" y="56" width="34" height="114" fill="#151316"/>
+  <circle cx="18" cy="72" r="9" fill="#D5BAFF"/>
+  <circle cx="18" cy="98" r="9" fill="#D5BAFF"/>
+  <rect x="9" y="116" width="18" height="13" rx="2" fill="#D5BAFF"/>
+  <!-- canvas with a small topology -->
+  <rect x="38" y="56" width="190" height="114" rx="8" fill="#151316" stroke="#363437"/>
+  <line x1="80" y1="95" x2="135" y2="125" stroke="#E8E0EB" stroke-width="1.5"/>
+  <line x1="135" y1="125" x2="190" y2="92" stroke="#E8E0EB" stroke-width="1.5"/>
+  <circle cx="80" cy="95" r="11" fill="#5F00C0" stroke="#D5BAFF" stroke-width="2"/>
+  <circle cx="135" cy="125" r="11" fill="#5F00C0" stroke="#D5BAFF" stroke-width="2"/>
+  <circle cx="190" cy="92" r="11" fill="#5F00C0" stroke="#D5BAFF" stroke-width="2"/>
+  <!-- side panel -->
+  <rect x="234" y="56" width="78" height="114" rx="8" fill="#0F0D11" stroke="#363437"/>
+  <path d="M234 64 a8 8 0 0 1 8 -8 h62 a8 8 0 0 1 8 8 v8 h-78 z" fill="#211F22"/>
+  <text x="241" y="68" font-size="8" font-weight="600" fill="#E6E1E6">Topology</text>
+  <rect x="240" y="80" width="66" height="13" rx="4" fill="#4B4357"/>
+  <rect x="245" y="85" width="40" height="3" rx="1.5" fill="#EADEF7"/>
+  <rect x="245" y="102" width="50" height="3" rx="1.5" fill="#E8E0EB" opacity="0.6"/>
+  <rect x="245" y="114" width="36" height="3" rx="1.5" fill="#E8E0EB" opacity="0.6"/>
+  <rect x="240" y="130" width="66" height="8" rx="4" fill="#4B4357"/>
+  <rect x="240" y="130" width="40" height="8" rx="4" fill="#02E600"/>
+  <!-- status bar with buttons -->
+  <path d="M1 176 h318 v10 a14 14 0 0 1 -14 13 h-290 a14 14 0 0 1 -14 -13 z" fill="#211F22"/>
+  <rect x="196" y="176" width="54" height="18" rx="9" fill="#4B4357"/>
+  <text x="223" y="188.5" font-size="8" text-anchor="middle" fill="#EADEF7">Cancel</text>
+  <rect x="256" y="176" width="54" height="18" rx="9" fill="#D5BAFF"/>
+  <text x="283" y="188.5" font-size="8" text-anchor="middle" font-weight="600" fill="#42008A">OK</text>
+  <text x="14" y="189" font-size="9" font-weight="600" fill="#E6E1E6">Purple &amp; Green</text>
+</svg>

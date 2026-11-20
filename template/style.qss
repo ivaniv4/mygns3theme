@@ -1,10 +1,10 @@
 /*
- * mygns3theme - "Violet" style for the GNS3 desktop GUI.
+ * mygns3theme - Qt style sheet template shared by every theme.
  *
- * Template: each token made of a palette.json key between two at-signs is
- * replaced by that key's value when the theme is applied
- * (mygns3theme.py apply). The theme_dir token is the folder the rendered
- * theme is written to.
+ * Template: each token made of a theme value name between two at-signs is
+ * replaced when the themes are rendered (mygns3theme.py apply). Values are
+ * the Material 3 color roles of themes/*.json plus the derived tokens listed
+ * in mygns3theme.py (theme_values).
  */
 
 /* ---------- Base ---------- */
@@ -32,7 +32,7 @@ QToolTip {
 }
 
 QMainWindow::separator {
-    background: @surface_high@;
+    background: @surface_container_high@;
     width: 4px;
     height: 4px;
 }
@@ -42,14 +42,14 @@ QMainWindow::separator:hover {
 }
 
 QSplitter::handle {
-    background: @surface_high@;
+    background: @surface_container_high@;
 }
 
 /* ---------- Menus ---------- */
 
 QMenuBar {
-    background-color: @surface_lowest@;
-    border-bottom: 1px solid @surface_high@;
+    background-color: @surface_container_lowest@;
+    border-bottom: 1px solid @surface_container_high@;
     padding: 2px 4px;
 }
 
@@ -99,14 +99,14 @@ QMenu::icon {
 /* ---------- Toolbars ---------- */
 
 QToolBar {
-    background-color: @surface_lowest@;
+    background-color: @surface_container_lowest@;
     border: none;
     spacing: 4px;
     padding: 4px;
 }
 
 QToolBar::separator {
-    background: @surface_high@;
+    background: @surface_container_high@;
     width: 1px;
     height: 1px;
     margin: 6px;
@@ -142,15 +142,15 @@ QDockWidget::title {
     background: @surface_container@;
     padding: 8px 10px;
     text-align: left;
-    border-bottom: 1px solid @surface_highest@;
+    border-bottom: 1px solid @surface_container_highest@;
 }
 
 /* ---------- Lists, trees, tables ---------- */
 
 QTreeView, QTreeWidget, QListView, QListWidget, QTableView, QTableWidget {
-    background-color: @surface_lowest@;
-    alternate-background-color: @surface_low@;
-    border: 1px solid @surface_highest@;
+    background-color: @surface_container_lowest@;
+    alternate-background-color: @surface_container_low@;
+    border: 1px solid @surface_container_highest@;
     border-radius: 12px;
     padding: 4px;
     outline: 0;
@@ -180,7 +180,7 @@ QHeaderView::section {
     background-color: @surface_container@;
     color: @on_surface_variant@;
     border: none;
-    border-bottom: 1px solid @surface_highest@;
+    border-bottom: 1px solid @surface_container_highest@;
     padding: 6px 8px;
     font-weight: 600;
 }
@@ -224,7 +224,7 @@ QPushButton:default:pressed {
 }
 
 QPushButton:disabled {
-    background-color: @surface_high@;
+    background-color: @surface_container_high@;
     color: @disabled_text@;
 }
 
@@ -236,7 +236,7 @@ QPushButton::menu-indicator {
 /* ---------- Inputs ---------- */
 
 QLineEdit, QPlainTextEdit, QTextEdit, QSpinBox, QDoubleSpinBox, QComboBox, QDateTimeEdit {
-    background-color: @surface_lowest@;
+    background-color: @surface_container_lowest@;
     border: 1px solid @outline_variant@;
     border-radius: 8px;
     padding: 5px 8px;
@@ -257,7 +257,7 @@ QDoubleSpinBox:focus, QComboBox:focus, QDateTimeEdit:focus {
 
 QLineEdit:disabled, QPlainTextEdit:disabled, QTextEdit:disabled, QSpinBox:disabled,
 QDoubleSpinBox:disabled, QComboBox:disabled {
-    background-color: @surface_low@;
+    background-color: @surface_container_low@;
     color: @disabled_text@;
 }
 
@@ -330,7 +330,7 @@ QCheckBox::indicator {
     height: 16px;
     border: 2px solid @on_surface_variant@;
     border-radius: 4px;
-    background: @surface_lowest@;
+    background: @surface_container_lowest@;
 }
 
 QCheckBox::indicator:hover {
@@ -352,7 +352,7 @@ QRadioButton::indicator {
     height: 16px;
     border: 2px solid @on_surface_variant@;
     border-radius: 10px;
-    background: @surface_lowest@;
+    background: @surface_container_lowest@;
 }
 
 QRadioButton::indicator:hover {
@@ -363,14 +363,14 @@ QRadioButton::indicator:checked {
     border-color: @primary@;
     background: qradialgradient(cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
                                 stop:0 @primary@, stop:0.5 @primary@,
-                                stop:0.6 @surface_lowest@, stop:1 @surface_lowest@);
+                                stop:0.6 @surface_container_lowest@, stop:1 @surface_container_lowest@);
 }
 
 /* ---------- Tabs ---------- */
 
 QTabWidget::pane {
-    background-color: @surface_lowest@;
-    border: 1px solid @surface_highest@;
+    background-color: @surface_container_lowest@;
+    border: 1px solid @surface_container_highest@;
     border-radius: 12px;
     top: -1px;
 }
@@ -399,7 +399,7 @@ QTabBar::tab:selected {
 /* ---------- Group boxes ---------- */
 
 QGroupBox {
-    border: 1px solid @surface_highest@;
+    border: 1px solid @surface_container_highest@;
     border-radius: 12px;
     margin-top: 14px;
     padding: 12px 8px 8px 8px;
@@ -440,7 +440,7 @@ QScrollBar::handle:horizontal {
 }
 
 QScrollBar::handle:hover {
-    background: @scrollbar_hover@;
+    background: @primary@;
 }
 
 QScrollBar::add-line, QScrollBar::sub-line {
@@ -466,7 +466,7 @@ QProgressBar {
 }
 
 QProgressBar::chunk {
-    background-color: @primary@;
+    background-color: @tertiary@;
     border-radius: 4px;
 }
 
@@ -477,7 +477,7 @@ QSlider::groove:horizontal {
 }
 
 QSlider::handle:horizontal {
-    background: @primary@;
+    background: @tertiary@;
     width: 16px;
     height: 16px;
     margin: -6px 0;
@@ -489,7 +489,7 @@ QSlider::handle:horizontal {
 QStatusBar {
     background-color: @surface_container@;
     color: @on_surface_variant@;
-    border-top: 1px solid @surface_highest@;
+    border-top: 1px solid @surface_container_highest@;
 }
 
 QStatusBar::item {
@@ -504,8 +504,8 @@ QGraphicsView {
 }
 
 QTextEdit#uiConsoleTextEdit {
-    background-color: @surface_lowest@;
-    color: @console_text@;
+    background-color: @surface_container_lowest@;
+    color: @on_surface@;
     font-family: "@mono_font_family@";
     border: none;
     border-radius: 0;

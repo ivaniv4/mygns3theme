@@ -1,18 +1,27 @@
 
-    def setVioletStyle(self):
+    def hasCustomTheme(self, name):
         """
-        Sets the Violet GUI style (added by mygns3theme).
+        Tells whether a style name is a theme installed by mygns3theme.
+        """
 
-        The stylesheet and colors are read from %APPDATA%\\GNS3\\mygns3theme,
-        written there by "mygns3theme.py apply".
+        from gns3.settings import mygns3theme_themes
+        return name in mygns3theme_themes()
+
+    def setCustomTheme(self, name):
+        """
+        Sets a GUI style installed by mygns3theme (added by mygns3theme).
+
+        The style sheet and colors are read from the theme folder written by
+        "mygns3theme.py apply".
         """
 
         import json
         import os
+        from gns3.settings import mygns3theme_dir, mygns3theme_themes
 
-        theme_dir = os.path.join(os.environ.get("APPDATA", os.path.expanduser("~")), "GNS3", "mygns3theme")
+        theme_dir = os.path.join(mygns3theme_dir(), mygns3theme_themes().get(name, ""))
         style = ""
-        style_file = QtCore.QFile(os.path.join(theme_dir, "violet.qss"))
+        style_file = QtCore.QFile(os.path.join(theme_dir, "style.qss"))
         if style_file.open(QtCore.QIODeviceBase.OpenModeFlag.ReadOnly):
             style = QtCore.QTextStream(style_file).readAll()
             style_file.close()
@@ -26,19 +35,20 @@
                 colors = json.load(f)
         except (OSError, ValueError):
             colors = {}
+        dark = colors.get("mode") == "dark"
 
-        def color(name, default):
-            return QtGui.QColor(colors.get(name, default))
+        def color(key, default):
+            return QtGui.QColor(colors.get(key, default))
 
-        # Fusion honours the whole palette, unlike the native Windows style
+        # Fusion honours the whole palette, unlike the native Windows and macOS styles
         QtWidgets.QApplication.setStyle("Fusion")
 
         role = QtGui.QPalette.ColorRole
         palette = QtGui.QPalette()
         for color_role, value in ((role.Window, color("surface", "#FEF7FF")),
                                   (role.WindowText, color("on_surface", "#1D1B20")),
-                                  (role.Base, color("surface_lowest", "#FFFFFF")),
-                                  (role.AlternateBase, color("surface_low", "#F7F2FA")),
+                                  (role.Base, color("surface_container_lowest", "#FFFFFF")),
+                                  (role.AlternateBase, color("surface_container_low", "#F7F2FA")),
                                   (role.Text, color("on_surface", "#1D1B20")),
                                   (role.PlaceholderText, color("outline", "#79747E")),
                                   (role.Button, color("secondary_container", "#E8DEF8")),
@@ -49,8 +59,8 @@
                                   (role.ToolTipBase, color("inverse_surface", "#322F35")),
                                   (role.ToolTipText, color("inverse_on_surface", "#F5EFF7")),
                                   (role.Link, color("primary", "#6750A4")),
-                                  (role.Light, color("surface_lowest", "#FFFFFF")),
-                                  (role.Midlight, color("surface_high", "#ECE6F0")),
+                                  (role.Light, color("surface_container_lowest", "#FFFFFF")),
+                                  (role.Midlight, color("surface_container_high", "#ECE6F0")),
                                   (role.Mid, color("outline_variant", "#CAC4D0")),
                                   (role.Dark, color("outline", "#79747E")),
                                   (role.Shadow, color("on_surface_variant", "#49454F"))):
@@ -67,9 +77,19 @@
             graphics_view._drawing_grid_color = color("drawing_grid", "#F1ECF8")
             graphics_view._node_grid_color = color("node_grid", "#E4DAF3")
             graphics_view.viewport().update()
-        self._mw.uiConsoleTextEdit.setDefaultTextColor(color("console_text", "#1D1B20"))
-        self._resetDefaultColors()
-        self._setClassicIcons()
+        self._mw.uiConsoleTextEdit.setDefaultTextColor(color("on_surface", "#1D1B20"))
+
+        if dark:
+            # same light grey as the built-in Dark style, so switching back resets it
+            topology_view_settings = graphics_view.settings()
+            for key in ("default_note_color", "default_label_color", "default_link_color"):
+                if topology_view_settings[key] == "#000000":
+                    topology_view_settings[key] = "#dfe1e2"
+            graphics_view.setSettings(topology_view_settings)
+            self._setCharcoalIcons()
+        else:
+            self._resetDefaultColors()
+            self._setClassicIcons()
         if colors.get("tint_icons", True):
             self._tintActionIcons(color("icon", "#6750A4"), color("icon_active", "#4F378B"))
 

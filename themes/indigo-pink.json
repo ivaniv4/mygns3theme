@@ -1,0 +1,28 @@
+{
+    "name": "Indigo & Pink",
+    "mode": "light",
+    "source": "GNS3 Web UI theme-indigo-pink",
+    "colors": {
+        "primary": "#005CBB",
+        "on_primary": "#FFFFFF",
+        "primary_container": "#D7E3FF",
+        "on_primary_container": "#00458F",
+        "secondary": "#565E71",
+        "secondary_container": "#DAE2F9",
+        "on_secondary_container": "#3E4759",
+        "tertiary": "#BA005C",
+        "surface": "#FAF9FD",
+        "surface_container_lowest": "#FFFFFF",
+        "surface_container_low": "#F4F3F6",
+        "surface_container": "#EFEDF0",
+        "surface_container_high": "#E9E7EB",
+        "surface_container_highest": "#E3E2E6",
+        "on_surface": "#1A1B1F",
+        "on_surface_variant": "#44474E",
+        "outline": "#74777F",
+        "outline_variant": "#C4C6D0",
+        "inverse_surface": "#2F3033",
+        "inverse_on_surface": "#F2F0F4",
+        "error": "#BA1A1A"
+    }
+}

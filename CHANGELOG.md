@@ -3,6 +3,29 @@
 All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.0.0] - 2026-11-20
+
+### Added
+- **Linux and macOS support**: pip / distribution installs (`.py` sources) and the macOS `GNS3.app` bundle (`.pyc`, re-signed after patching).
+- **8 new themes** matching the GNS3 Web UI: Deep Purple & Amber, Indigo & Pink, Magenta & Violet, Rose & Red (light) and Pink & Bluegrey, Purple & Green, Azure & Blue, Cyan & Orange (dark).
+- Dark theme support (light topology labels, charcoal icons).
+- Every installed theme appears in *Edit > Preferences > General > Interface style*.
+- One-step installers per platform: `install.cmd` / `install.ps1` (Windows) and `install.sh` (Linux/macOS), with Python detection or installation, theme picker and automatic GNS3 shutdown and restart.
+- Two release archives (`-windows.zip`, `-linux-macos.tar.gz`) built by `scripts/build_release.py` and published by GitHub Actions on every `v*` tag.
+- `detect`, `list`, `select`, `remove-themes` and `selftest` commands.
+- CI: self-test on Windows, Linux and macOS, ShellCheck and PowerShell syntax checks.
+- Theme previews in `docs/themes/` (`scripts/make_previews.py`).
+
+### Changed
+- Themes are plain JSON files using Material 3 color roles (`themes/*.json`); the style sheet template moved to `template/style.qss`.
+- Backups are refreshed automatically after a GNS3 upgrade.
+
+### Removed
+- The 1.x Violet style, replaced by the Web UI themes.
+
+### Migration
+- An install patched by 1.x is detected and upgraded in place by the 2.0 installer, and switches to Deep Purple & Amber.
+
 ## [1.0.0] - 2026-11-20
 
 ### Added
@@ -10,6 +33,6 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - `mygns3theme.py` CLI: `patch`, `unpatch`, `apply`, `reset-style`, `status`.
 - Verification of official `gns3-gui` sources against the shipped bytecode before patching.
 - Automatic backup and restore of `library.zip`.
-- Customizable palette (`theme/palette.json`) and Qt style sheet (`theme/violet.qss`).
 - Toolbar icon tinting.
-- `install.ps1` and `uninstall.ps1` with UAC elevation.
+
+[2.0.0]: https://github.com/ivaniv4/mygns3theme/releases/tag/v2.0.0

@@ -6,11 +6,16 @@ labels: bug
 
 **Describe the problem**
 
-**Output of `py -3.13 mygns3theme.py status`**
+**Platform**
+- [ ] Windows
+- [ ] Linux (distribution: )
+- [ ] macOS (version: )
+
+**Output of `python mygns3theme.py detect` and `python mygns3theme.py status`**
 
 ```text
 ```
 
-**GNS3 version / Windows version / Python version**
+**GNS3 version / Python version / theme**
 
 **Screenshots (if visual)**

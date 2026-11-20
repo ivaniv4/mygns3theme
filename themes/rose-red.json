@@ -1,0 +1,28 @@
+{
+    "name": "Rose & Red",
+    "mode": "light",
+    "source": "GNS3 Web UI theme-rose-red",
+    "colors": {
+        "primary": "#BA005C",
+        "on_primary": "#FFFFFF",
+        "primary_container": "#FFD9E1",
+        "on_primary_container": "#8F0045",
+        "secondary": "#74565D",
+        "secondary_container": "#FFD9E1",
+        "on_secondary_container": "#5B3F46",
+        "tertiary": "#C00100",
+        "surface": "#FFF8F8",
+        "surface_container_lowest": "#FFFFFF",
+        "surface_container_low": "#FDF1F2",
+        "surface_container": "#F7EBEC",
+        "surface_container_high": "#F1E5E6",
+        "surface_container_highest": "#ECE0E1",
+        "on_surface": "#201A1B",
+        "on_surface_variant": "#514346",
+        "outline": "#847376",
+        "outline_variant": "#D6C2C5",
+        "inverse_surface": "#352F30",
+        "inverse_on_surface": "#FAEEEF",
+        "error": "#BA1A1A"
+    }
+}

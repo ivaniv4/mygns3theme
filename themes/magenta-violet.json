@@ -1,0 +1,28 @@
+{
+    "name": "Magenta & Violet",
+    "mode": "light",
+    "source": "GNS3 Web UI theme-magenta-violet",
+    "colors": {
+        "primary": "#A900A9",
+        "on_primary": "#FFFFFF",
+        "primary_container": "#FFD7F5",
+        "on_primary_container": "#810081",
+        "secondary": "#6E5869",
+        "secondary_container": "#F7DAEF",
+        "on_secondary_container": "#554151",
+        "tertiary": "#7D00FA",
+        "surface": "#FFF7F9",
+        "surface_container_lowest": "#FFFFFF",
+        "surface_container_low": "#FBF1F5",
+        "surface_container": "#F5EBF0",
+        "surface_container_high": "#EFE6EA",
+        "surface_container_highest": "#E9E0E4",
+        "on_surface": "#1E1A1D",
+        "on_surface_variant": "#4E444B",
+        "outline": "#80747C",
+        "outline_variant": "#D1C2CB",
+        "inverse_surface": "#342F32",
+        "inverse_on_surface": "#F8EEF2",
+        "error": "#BA1A1A"
+    }
+}
