@@ -32,6 +32,8 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
+import urllib.error
 import urllib.request
 import warnings
 import zipfile
@@ -342,13 +344,31 @@ def require_target(args):
 
 # --- patches ---
 
+def download(url, attempts=5):
+    """GET a URL, retrying on rate limits (429) and server errors (5xx) or network hiccups."""
+    request = urllib.request.Request(url, headers={"User-Agent": f"mygns3theme/{__version__}"})
+    for attempt in range(1, attempts + 1):
+        try:
+            with urllib.request.urlopen(request, timeout=30) as resp:
+                return resp.read()
+        except urllib.error.HTTPError as error:
+            retryable = error.code == 429 or error.code >= 500
+            if not retryable or attempt == attempts:
+                raise
+        except (urllib.error.URLError, OSError):
+            if attempt == attempts:
+                raise
+        delay = 2 ** attempt
+        info(f"Download failed (attempt {attempt}/{attempts}), retrying in {delay}s")
+        time.sleep(delay)
+
+
 def fetch_source(version, module):
     path = Path(tempfile.gettempdir()) / "mygns3theme-cache" / f"v{version}" / f"{module}.py"
     if not path.exists():
         url = SOURCE_URL.format(version=version, module=module)
         info(f"Downloading {url}")
-        with urllib.request.urlopen(url, timeout=30) as resp:
-            data = resp.read()
+        data = download(url)
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(data)
     return path.read_text(encoding="utf-8")

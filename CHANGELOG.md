@@ -12,6 +12,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - The self-test now covers 8 GNS3 versions, and CI runs it on Python 3.8 too.
 
 ### Fixed
+- Downloads of the official GNS3 sources are retried with a delay on rate limits (HTTP 429) and server errors (5xx), which made CI fail with a 503.
 - The patched style code no longer assumes `QtWidgets`, grid colors or the console exist (they are missing in old versions).
 
 ## [2.0.0] - 2026-11-20
