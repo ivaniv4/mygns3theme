@@ -1,0 +1,28 @@
+{
+    "name": "Cyan & Orange",
+    "mode": "dark",
+    "source": "GNS3 Web UI theme-cyan-orange",
+    "colors": {
+        "primary": "#00DDDD",
+        "on_primary": "#003737",
+        "primary_container": "#004F4F",
+        "on_primary_container": "#00FBFB",
+        "secondary": "#B0CCCB",
+        "secondary_container": "#324B4B",
+        "on_secondary_container": "#CCE8E7",
+        "tertiary": "#FFB787",
+        "surface": "#101414",
+        "surface_container_lowest": "#0B0F0E",
+        "surface_container_low": "#191C1C",
+        "surface_container": "#1C2020",
+        "surface_container_high": "#272B2A",
+        "surface_container_highest": "#313635",
+        "on_surface": "#E0E3E2",
+        "on_surface_variant": "#DAE5E4",
+        "outline": "#889392",
+        "outline_variant": "#3F4948",
+        "inverse_surface": "#E0E3E2",
+        "inverse_on_surface": "#2D3131",
+        "error": "#FFB4AB"
+    }
+}

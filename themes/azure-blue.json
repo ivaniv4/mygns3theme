@@ -1,0 +1,28 @@
+{
+    "name": "Azure & Blue",
+    "mode": "dark",
+    "source": "GNS3 Web UI theme-azure-blue",
+    "colors": {
+        "primary": "#ABC7FF",
+        "on_primary": "#002F65",
+        "primary_container": "#00458F",
+        "on_primary_container": "#D7E3FF",
+        "secondary": "#BEC6DC",
+        "secondary_container": "#3E4759",
+        "on_secondary_container": "#DAE2F9",
+        "tertiary": "#BEC2FF",
+        "surface": "#121316",
+        "surface_container_lowest": "#0D0E11",
+        "surface_container_low": "#1A1B1F",
+        "surface_container": "#1F2022",
+        "surface_container_high": "#292A2C",
+        "surface_container_highest": "#343537",
+        "on_surface": "#E3E2E6",
+        "on_surface_variant": "#E0E2EC",
+        "outline": "#8E9099",
+        "outline_variant": "#44474E",
+        "inverse_surface": "#E3E2E6",
+        "inverse_on_surface": "#2F3033",
+        "error": "#FFB4AB"
+    }
+}

@@ -1,0 +1,47 @@
+name: Release
+
+# Push a tag like v2.0.0 to publish the Windows and Linux/macOS releases
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Self-test
+        run: python mygns3theme.py selftest
+      - name: Build archives
+        run: python scripts/build_release.py "${GITHUB_REF_NAME}"
+      - name: Publish the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          cat > notes.md <<EOF
+          ## Downloads
+
+          | Platform | Archive | Run |
+          | --- | --- | --- |
+          | Windows | \`mygns3theme-${version}-windows.zip\` | double-click \`install.cmd\` |
+          | Linux / macOS | \`mygns3theme-${version}-linux-macos.tar.gz\` | \`./install.sh\` |
+
+          See the [README](https://github.com/${GITHUB_REPOSITORY}#installation) for details.
+          EOF
+          # a re-pushed tag updates the existing release instead of failing
+          if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            gh release upload "${GITHUB_REF_NAME}" dist/* --clobber
+            gh release edit "${GITHUB_REF_NAME}" --notes-file notes.md --draft=false
+          else
+            gh release create "${GITHUB_REF_NAME}" dist/* \
+              --title "mygns3theme ${GITHUB_REF_NAME}" \
+              --notes-file notes.md \
+              --generate-notes
+          fi

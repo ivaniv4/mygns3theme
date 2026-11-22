@@ -1,0 +1,28 @@
+{
+    "name": "Purple & Green",
+    "mode": "dark",
+    "source": "GNS3 Web UI theme-purple-green",
+    "colors": {
+        "primary": "#D5BAFF",
+        "on_primary": "#42008A",
+        "primary_container": "#5F00C0",
+        "on_primary_container": "#ECDCFF",
+        "secondary": "#CEC2DB",
+        "secondary_container": "#4B4357",
+        "on_secondary_container": "#EADEF7",
+        "tertiary": "#02E600",
+        "surface": "#151316",
+        "surface_container_lowest": "#0F0D11",
+        "surface_container_low": "#1D1B1E",
+        "surface_container": "#211F22",
+        "surface_container_high": "#2B292D",
+        "surface_container_highest": "#363437",
+        "on_surface": "#E6E1E6",
+        "on_surface_variant": "#E8E0EB",
+        "outline": "#958E99",
+        "outline_variant": "#49454E",
+        "inverse_surface": "#E6E1E6",
+        "inverse_on_surface": "#323033",
+        "error": "#FFB4AB"
+    }
+}
